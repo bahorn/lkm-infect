@@ -5,10 +5,10 @@
 
 MODULE_LICENSE("GPL");
 
-extern int init(void);
+extern int SYMBOL_NAME(void);
 
 int infection_init(void) {
     printk(KERN_ALERT "Init Inject!\n");
 
-    return init();
+    return SYMBOL_NAME();
 }

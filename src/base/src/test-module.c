@@ -8,7 +8,7 @@ MODULE_AUTHOR("bah");
 MODULE_DESCRIPTION("test-module");
 MODULE_VERSION("1.0");
 
-static int init(void) {
+static int base_init(void) {
 
     printk(KERN_ALERT "Init Original!\n");
 
@@ -22,5 +22,5 @@ static void clean(void) {
     return;
 }
 
-module_init(init);
+module_init(base_init);
 module_exit(clean);
