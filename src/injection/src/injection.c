@@ -5,6 +5,8 @@
 
 MODULE_LICENSE("GPL");
 
+int infection_init(void);
+
 extern int SYMBOL_NAME(void);
 
 int infection_init(void) {
