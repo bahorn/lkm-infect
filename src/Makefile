@@ -1,10 +1,10 @@
 build:
 	make -C ./base/
 	make -C ./injection/
-	cp ./base/src/test-mod.ko /workdir/artifacts/test-mod.ko
+	objcopy --globalize-symbol=init ./base/src/test-mod.ko /workdir/artifacts/test-mod.ko
 	find ./injection/
-	cp ./injection/src/injection-payload.ko /workdir/artifacts/injection-payload.ko
+	cp ./injection/src/injection.o /workdir/artifacts/injection.o
 	ld -r /workdir/artifacts/test-mod.ko \
-		/workdir/artifacts/injection-payload.ko \
+		/workdir/artifacts/injection.o \
 		-o /workdir/artifacts/together.ko
 	python3 ./patcher.py /workdir/artifacts/together.ko /workdir/artifacts/infected.ko
