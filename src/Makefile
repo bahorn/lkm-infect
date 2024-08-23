@@ -1,3 +1,3 @@
 build:
-	make -C ./base/
-	./infect.sh ./base/src/test-mod.ko /workdir/artifacts/infected.ko
+	make -C ./goat/
+	./infect.sh ./goat/src/test-mod.ko /workdir/artifacts/infected.ko
